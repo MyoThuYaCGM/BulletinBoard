@@ -1,0 +1,52 @@
+.container {
+    max-width: 520px;
+}
+
+.page-header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.page-header h2 {
+    font-size: 24px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 32px;
+}
+
+.btn-back {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    flex: 1;
+}
+
+.btn-back:hover {
+    background: rgba(148, 163, 184, 0.1);
+    border-color: var(--text-muted);
+    color: var(--text);
+}
+
+.btn-save {
+    background: linear-gradient(135deg, var(--success), #34d399);
+    flex: 1;
+    box-shadow: 0 4px 16px rgba(16, 185, 129, 0.3);
+}
+
+.btn-save:hover {
+    box-shadow: 0 8px 24px rgba(16, 185, 129, 0.45);
+}
+
+.btn-update {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    flex: 1;
+    box-shadow: 0 4px 16px rgba(99, 102, 241, 0.3);
+}
+
+.btn-update:hover {
+    box-shadow: 0 8px 24px rgba(99, 102, 241, 0.45);
+}
