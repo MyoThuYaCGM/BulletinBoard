@@ -13,9 +13,10 @@ public class SessionInterceptor implements HandlerInterceptor {
 			throws Exception {
 
 		HttpSession session = request.getSession(false);
-
+		
+		
 		if (session == null || session.getAttribute("loggedInUser") == null) {
-
+			
 			response.sendRedirect("/");
 			return false;
 		}

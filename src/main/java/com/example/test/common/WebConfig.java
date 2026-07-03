@@ -12,6 +12,17 @@ public class WebConfig implements WebMvcConfigurer {
 	            InterceptorRegistry registry) {
 
 	        registry.addInterceptor(new SessionInterceptor())
-	                .addPathPatterns("/employees/**");
-	    }
+	                .addPathPatterns(
+	                		"/employees/**",
+	                		"/forgot-password",
+	                		"/change-password"
+	                		);
+	        
+	        registry.addInterceptor(
+	                new AdminInterceptor())
+	                .addPathPatterns(
+	                        "/employees/add",
+	                        "/employees/edit/**",
+	                        "/employees/delete/**");
+	 }
 }
