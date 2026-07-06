@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.example.test.Enum.Role;
 import com.example.test.entity.Employee;
 import com.example.test.repository.EmployeeRepository;
 import com.example.test.service.EmployeeService;
@@ -39,9 +38,7 @@ public class EmployeeServiceImp implements EmployeeService{
 	            && !existing.get().getId().equals(employee.getId())) {
 
 	        throw new RuntimeException("Email already exists");
-	    }
-	    employee.setRole(Role.USER);
-	    
+	    }    
 		return empRepo.save(employee);
 	}
 

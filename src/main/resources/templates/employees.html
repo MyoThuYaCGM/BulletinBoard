@@ -28,6 +28,7 @@
 					<th>ID</th>
 					<th>Name</th>
 					<th>Email</th>
+					<th>Password</th>
 					<th>Role</th>
 					<th width="180">Actions</th>
 				</tr>
@@ -38,6 +39,7 @@
 					<td th:text="${emp.id}"></td>
 					<td th:text="${emp.name}"></td>
 					<td th:text="${emp.email}"></td>
+					<td th:text="${emp.password}"></td>
 					<td th:text="${#strings.isEmpty(emp.role) ? '-' : emp.role}"></td>
 					<td><a th:href="@{/employees/edit/{id}(id=${emp.id})}"
 						class="action-btn edit-btn"> Edit </a> <a

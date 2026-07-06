@@ -48,7 +48,7 @@ public class ExcelServiceImp implements ExcelService {
 		CellStyle headerStyle = workbook.createCellStyle();
 		headerStyle.setFont(headerFont);
 
-		String[] headers = { "ID", "Name", "Email", "Password" };
+		String[] headers = { "ID", "Name", "Email", "Password", "Role" };
 
 		Row header = sheet.createRow(0);
 
@@ -69,8 +69,8 @@ public class ExcelServiceImp implements ExcelService {
 			row.createCell(1).setCellValue(employee.getName());
 			row.createCell(2).setCellValue(employee.getEmail());
 			row.createCell(3).setCellValue(employee.getPassword());
-			// row.createCell(4).setCellValue(employee.getRole() == null ? "-" :
-			// employee.getRole().name());
+			row.createCell(4).setCellValue(employee.getRole() == null ? "-" :
+			 employee.getRole().name());
 		}
 
 		response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");

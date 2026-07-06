@@ -13,16 +13,19 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.example.test.dto.loginRequest;
 import com.example.test.entity.Employee;
 import com.example.test.repository.EmployeeRepository;
+import com.example.test.service.EmailService;
 
+import jakarta.mail.MessagingException;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class LoginController {
 
 	final private EmployeeRepository empRepo;
-
-	public LoginController(EmployeeRepository empRepo) {
+	final private EmailService emailService;
+	public LoginController(EmployeeRepository empRepo, EmailService emailService) {
 		this.empRepo = empRepo;
+		this.emailService = emailService;
 	}
 
 	@GetMapping("/login")
@@ -60,19 +63,35 @@ public class LoginController {
 		return "forgot-password";
 	}
 
+	/*
+	 * @PostMapping("/forgot-password") public String forgotPassword(@RequestParam
+	 * String email, RedirectAttributes redirectAttributes, Model model) {
+	 * 
+	 * Optional<Employee> employee = empRepo.findByEmail(email);
+	 * 
+	 * if (employee.isEmpty()) { model.addAttribute("error", "Invalid Email");
+	 * return "forgot-password"; }
+	 * 
+	 * redirectAttributes.addAttribute("email", email);
+	 * 
+	 * return "redirect:/change-password"; }
+	 */
 	@PostMapping("/forgot-password")
-	public String forgotPassword(@RequestParam String email, RedirectAttributes redirectAttributes, Model model) {
+	public String forgotPassword(@RequestParam String email, Model model) throws MessagingException {
 
-		Optional<Employee> employee = empRepo.findByEmail(email);
+	    Optional<Employee> emp = empRepo.findByEmail(email);
 
-		if (employee.isEmpty()) {
-			model.addAttribute("error", "Invalid Email");
-			return "forgot-password";
-		}
+	    if (emp.isEmpty()) {
+	        model.addAttribute("error", "Email not found.");
+	        return "forgot-password";
+	    }
 
-		redirectAttributes.addAttribute("email", email);
+	    emailService.sendResetPassword(email);
 
-		return "redirect:/change-password";
+	    model.addAttribute("success",
+	            "A password reset link has been sent to your email.");
+
+	    return "forgot-password";
 	}
 
 	@GetMapping("/change-password")
