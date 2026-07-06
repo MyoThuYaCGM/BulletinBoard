@@ -1,9 +1,11 @@
 package com.example.test.serviceImp;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.example.test.Enum.Role;
 import com.example.test.entity.Employee;
 import com.example.test.repository.EmployeeRepository;
 import com.example.test.service.EmployeeService;
@@ -31,9 +33,15 @@ public class EmployeeServiceImp implements EmployeeService{
 	@Override
 	public Employee saveEmployee(Employee employee) {
 		
-		if (empRepo.existsByEmail(employee.getEmail())) {
+		Optional<Employee> existing = empRepo.findByEmail(employee.getEmail());
+
+	    if (existing.isPresent()
+	            && !existing.get().getId().equals(employee.getId())) {
+
 	        throw new RuntimeException("Email already exists");
 	    }
+	    employee.setRole(Role.USER);
+	    
 		return empRepo.save(employee);
 	}
 

@@ -48,8 +48,8 @@ public class Employee {
 		return id;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setId(Long data) {
+		this.id = data;
 	}
 
 	public String getPassword() {

@@ -5,6 +5,7 @@
 <title>Employees</title>
 <link rel="stylesheet" th:href="@{/css/common.css}">
 <link rel="stylesheet" th:href="@{/css/employees.css}">
+ <script th:src="@{/js/employees.js}"></script>
 </head>
 <body>
 
@@ -14,7 +15,11 @@
 			<h2>Employee List</h2>
 
 			<a th:href="@{/employees/add}" class="btn btn-add"> + Add
-				Employee </a>
+				Employee </a> <a th:href="@{/employees/export}" class="btn btn-download">
+				Export Excel </a>
+
+			<button type="button" class="btn btn-upload"
+				onclick="openImportModal()">Import Excel</button>
 		</div>
 
 		<table>
@@ -23,7 +28,7 @@
 					<th>ID</th>
 					<th>Name</th>
 					<th>Email</th>
-					<th>Password</th>
+					<th>Role</th>
 					<th width="180">Actions</th>
 				</tr>
 			</thead>
@@ -33,7 +38,7 @@
 					<td th:text="${emp.id}"></td>
 					<td th:text="${emp.name}"></td>
 					<td th:text="${emp.email}"></td>
-					<td th:text="${emp.password}"></td>
+					<td th:text="${#strings.isEmpty(emp.role) ? '-' : emp.role}"></td>
 					<td><a th:href="@{/employees/edit/{id}(id=${emp.id})}"
 						class="action-btn edit-btn"> Edit </a> <a
 						th:href="@{/employees/delete/{id}(id=${emp.id})}"
@@ -45,10 +50,56 @@
 		<div class="bot-bar">
 			<a th:href="@{/logout}" class="btn btn-logout"> Logout </a>
 		</div>
-
-
-
 	</div>
 
+
+	<!-- Pop up Import -->
+	<div id="importModal" class="modal">
+    <div class="modal-content">
+
+        <div class="modal-header">
+            <h3>Import Employees</h3>
+            <span class="close" onclick="closeImportModal()">&times;</span>
+        </div>
+
+        <form th:action="@{/employees/import}"
+              method="post"
+              enctype="multipart/form-data">
+
+            <input type="file"
+                   id="excelFile"
+                   name="file"
+                   accept=".xlsx"
+                   required>
+
+            <table id="previewTable">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Password</th>
+                        <th>Role</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+
+            <div class="modal-buttons">
+            	<a th:href="@{/employees/template}" class="btn btn-template">
+                    📄 Download Template
+                </a>
+                <button type="button" id="previewBtn" class="btn btn-preview">
+                    Preview
+                </button>
+
+                <button type="submit" class="btn btn-upload">
+                    Import
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+</div>
 </body>
 </html>

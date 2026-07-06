@@ -159,3 +159,204 @@ tbody tr:last-child td {
 .empty-state p {
     font-size: 15px;
 }
+.btn-download {
+    background: linear-gradient(135deg,
+            #2563eb,
+            #60a5fa);
+}
+
+.btn-upload {
+    background: linear-gradient(135deg,
+            #7c3aed,
+            #a78bfa);
+}
+
+.upload-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.file-input {
+    width: 170px;
+    font-size: 13px;
+}
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(15,23,42,.55);
+    justify-content:center;
+    align-items:center;
+    z-index:999;
+}
+
+.modal-content{
+
+    width:700px;
+    max-width:95%;
+    max-height:85vh;
+
+    overflow-y:auto;
+
+    background:#fff;
+    border-radius:14px;
+
+    padding:24px 28px;
+
+    box-shadow:0 15px 40px rgba(0,0,0,.25);
+}
+
+.modal-header{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:20px;
+}
+
+.modal-header h3{
+
+    margin:0;
+    font-size:24px;
+}
+
+.close{
+
+    font-size:28px;
+    cursor:pointer;
+    color:#666;
+}
+
+.close:hover{
+
+    color:#ef4444;
+}
+
+#excelFile{
+
+    width:100%;
+    margin-bottom:15px;
+}
+
+.template-link{
+
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.btn-template{
+
+    display:inline-block;
+    padding:8px 18px;
+
+    border-radius:6px;
+
+    background:#eef2ff;
+
+    color:#4338ca;
+
+    text-decoration:none;
+
+    font-weight:600;
+}
+
+.btn-template:hover{
+
+    background:#dbeafe;
+}
+
+#previewTable{
+
+    width:100%;
+    margin-top:15px;
+
+    border-collapse:collapse;
+}
+
+#previewTable th,
+#previewTable td{
+
+    padding:10px 14px;
+
+    border:1px solid #ddd;
+
+    text-align:left;
+}
+
+#previewTable thead{
+
+    background:#eef2ff;
+}
+
+.modal-buttons{
+
+    display:flex;
+    justify-content:flex-end;
+
+    gap:12px;
+
+    margin-top:20px;
+}
+
+.btn-preview{
+
+    background:#f59e0b;
+    color:white;
+}
+
+.btn-upload{
+
+    background:#7c3aed;
+    color:white;
+}
+.modal-content {
+    color: #1f2937;
+}
+
+.modal-content h3 {
+    color: #111827;
+}
+
+.modal-content label,
+.modal-content p,
+.modal-content td,
+.modal-content th {
+    color: #374151;
+}
+#previewTable td {
+    color: #1f2937;
+    background: white;
+}
+
+#previewTable th {
+    color: #475569;
+}
+.file-row{
+
+    display:flex;
+    align-items:center;
+    gap:15px;
+
+    margin-bottom:20px;
+
+    flex-wrap:wrap;
+}
+
+.btn-template{
+
+    white-space:nowrap;
+
+    padding:10px 16px;
+
+    border-radius:8px;
+
+    background:#eef2ff;
+
+    color:#4338ca;
+
+    text-decoration:none;
+
+    font-weight:600;
+}
